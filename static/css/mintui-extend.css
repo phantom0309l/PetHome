@@ -1,0 +1,14 @@
+.mint-button--success {
+    color: #fff;
+    background-color: #1AAD19
+}
+.mint-button--success.is-plain {
+    border: 1px solid #1AAD19;
+    background-color: transparent;
+    color: #1AAD19
+}
+
+.mint-checkbox-input:checked + .mint-checkbox-core {
+    background-color: #1AAD19;
+    border-color: #1AAD19;
+}

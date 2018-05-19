@@ -1,0 +1,9 @@
+.DS_Store
+node_modules/
+dist/
+npm-debug.log
+#integrate/src/config/config.js
+#doctordb/src/config/config.js
+#admin/src/config/config.js
+#wx/src/config/config.js
+*/*.bak
