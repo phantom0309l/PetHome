@@ -556,6 +556,11 @@ input[type="text"].form-control, input[type="password"].form-control, input[type
 
 
 /* 按钮 begin */
+button {
+    border: 0;
+    background-color: inherit;
+}
+
 button.fc-btn, input.fc-btn {
     width: 100%;
     border-width: 0;

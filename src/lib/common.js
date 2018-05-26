@@ -1,7 +1,14 @@
 import api from '../config/api.js';
-import { Indicator } from 'mint-ui';
+import { Toast } from 'vant';
 import Vue from 'vue';
 export default {
+    checkLogin: function () {
+        var mobile = localStorage.getItem('_mobile_');
+        if (mobile !== '' && mobile !== null && typeof mobile !== 'undefined') {
+            return true;
+        }
+        return false;
+    },
     checkOpenid: function(queryString) {
         var openid = localStorage.getItem('_openid_');
         // console.log(openid, 'openid');
@@ -126,9 +133,9 @@ export default {
         }
 
         if (isNeedLoading) {
-            Indicator.open({
-                text: loadingText,
-                spinnerType: 'snake',
+            Toast.loading({
+                mask: true,
+                message: loadingText
             });
         }
         $.ajax({
@@ -147,7 +154,7 @@ export default {
             }
         }).always(function(){
             if (isNeedLoading) {
-                Indicator.close();
+                Toast.clear();
             }
             if (typeof alwaysCallback == "function") {
                 alwaysCallback();
@@ -156,9 +163,9 @@ export default {
     },
     post: function(url, params, handleResponse, dataType = 'json', isneedloading = true, isAsync = true){
         if (isneedloading) {
-            Indicator.open({
-                text: '正在加载...',
-                spinnerType: 'snake',
+            Toast.loading({
+                mask: true,
+                message: '正在加载...'
             });
         }
         if (!params.hasOwnProperty('_openid_')) {
@@ -174,7 +181,7 @@ export default {
         }).done(function(response){
             if (isneedloading) {
                 Vue.nextTick(() => {
-                    Indicator.close();
+                    Toast.clear();
                 });
             }
             if (typeof handleResponse == "function") {
@@ -183,44 +190,15 @@ export default {
         }).fail(function() {
             if (isneedloading) {
                 Vue.nextTick(() => {
-                    Indicator.close();
+                    Toast.clear();
                 });
             }
         }).always(function(){
             if (isneedloading) {
                 setTimeout(function(){
-                    Indicator.close();
+                    Toast.clear();
                 }, 2000);
             }
         })
     },
-    getBedtktInfo: function(bedtktid, openid, f){
-        var url = api.get('bedtkt.one');
-        var params = {
-            bedtktid: bedtktid,
-            openid: openid,
-        }
-        this.post(url, params, f);
-    },
-    isCancer: function(diseaseid) {
-        var cancerDiseaseidArr = [8, 14, 15, 19, 21];
-        for (var i = 0; i < cancerDiseaseidArr.length; i++) {
-            if (cancerDiseaseidArr[i] == diseaseid) {
-                return true;
-            }
-        }
-        return false;
-    },
-    getDiseases: function(getDiseaseArr) {
-        var url = api.get('doctor.info');
-        var openid = localStorage.getItem('_openid_');
-        var params = {
-            openid: openid
-        }
-        this.ajax({url: url, params: params,done: function(response){
-            if (typeof getDiseaseArr == 'function') {
-                getDiseaseArr(response.data.doctor.disease_arr);
-            }
-        }})
-    }
 }
