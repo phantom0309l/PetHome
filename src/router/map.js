@@ -91,7 +91,7 @@ export default [
             requireBind: true,
             showTabbar: false,
         },
-        component: resolve => require(['../pages/myFamily.vue'], resolve)
+        component: resolve => require(['../pages/MyFamily.vue'], resolve)
     },
     {
         path: '/login',
