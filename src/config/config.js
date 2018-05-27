@@ -9,9 +9,9 @@ console.log(process.env)
 //从而使开发环境能够访问自己环境的服务端接口
 if (process.env.NODE_ENV === 'development') {
     var dev_user = process.env.DEV_USER || ""
-    if (dev_user == "") {
-        throw new Error("请设置环境变量 DEV_USER")
-    }
+    // if (dev_user == "") {
+    //     throw new Error("请设置环境变量 DEV_USER")
+    // }
 
     host = '//dwx.fangcunhulian.cn/api';
     dev = '?dev_user=' + dev_user + '&display=json';
