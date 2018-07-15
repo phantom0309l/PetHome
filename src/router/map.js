@@ -143,11 +143,12 @@ export default [
         name: 'error',
         component: resolve => require(['../pages/Error.vue'], resolve)
     },
-    {
-        path: '/',
-        name: 'empty',
-        // redirect: '/error',
-        component: resolve => require(['../pages/Empty.vue'], resolve),
-    },
+    // {
+    //     path: '/',
+    //     name: 'empty',
+    //     // redirect: '/error',
+    //     component: resolve => require(['../pages/Empty.vue'], resolve),
+    // },
+    {path: '/', redirect: '/index'},
     {path: '*', redirect: '/index'},
 ]
