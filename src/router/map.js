@@ -149,15 +149,5 @@ export default [
         // redirect: '/error',
         component: resolve => require(['../pages/Empty.vue'], resolve),
     },
-    {path: '/', redirect: '/index'},
-    {
-        path: '*',
-        // redirect: '/error',
-        redirect: to => {
-            sessionStorage.setItem('_errorurl_', to.path);
-            localStorage.setItem('_errorwxurl_', to.path);
-            localStorage.setItem('_errorhref_', window.location.href);
-            return '/error';
-        }
-    }
+    {path: '*', redirect: '/index'},
 ]
