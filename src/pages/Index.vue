@@ -11,21 +11,21 @@
         </van-swipe>
 
         <van-row class="fc-bg-white pull-20-t pull-20-b" style="font-size: 14px;">
-            <van-col span="7" offset="1">
+            <van-col span="24" style="text-align: center;">
                 <button @click="goRegisterFamily"><i class="icon icon-home i-b"></i> 申请家庭</button>
             </van-col>
-            <van-col span="7" offset="1" class="van-hairline--left">
+            <!--<van-col span="7" offset="1" class="van-hairline--left">
                 <button><i class="icon icon-pet i-b"></i> 宠物指南</button>
             </van-col>
             <van-col span="7" offset="1" class="van-hairline--left">
                 <button><i class="icon icon-baozhang i-b"></i> 保障服务</button>
-            </van-col>
+            </van-col>-->
         </van-row>
 
         <p class="vc push-20-t pull-5-b" style="font-weight: bolder;">你可能想要</p>
         <van-row class="fc-bg-white pull-15-t pull-15-b push-10-t" style="font-size: 14px;">
             <van-col span="7" offset="1">
-                <button><i class="icon icon-release" style="margin: 10px auto;"></i> 发布寄养</button>
+                <button><i class="icon icon-release" style="margin: 10px auto;" @click="goRegisterFamily"></i> 发布寄养</button>
             </van-col>
             <van-col span="7" offset="1">
                 <button><i class="icon icon-integral" style="margin: 10px auto;" @click="goProductList"></i> 寄养家庭</button>

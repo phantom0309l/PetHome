@@ -2,7 +2,7 @@
 require('./check-versions')()
 
 process.env.NODE_ENV = 'production'
-
+process.env.VUE_HOST = '172.31.58.184'
 const ora = require('ora')
 const rm = require('rimraf')
 const path = require('path')
