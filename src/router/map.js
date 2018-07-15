@@ -31,6 +31,33 @@ export default [
         component: resolve => require(['../pages/MsgList.vue'], resolve)
     },
     {
+        path: '/orderone',
+        name: 'orderone',
+        meta: {
+            requireBind: true,
+            showTabbar: false,
+        },
+        component: resolve => require(['../pages/OrderOne.vue'], resolve)
+    },
+    {
+        path: '/orderselectdate',
+        name: 'orderselectdate',
+        meta: {
+            requireBind: true,
+            showTabbar: false,
+        },
+        component: resolve => require(['../pages/OrderSelectDate.vue'], resolve)
+    },
+    {
+        path: '/order',
+        name: 'order',
+        meta: {
+            requireBind: true,
+            showTabbar: false,
+        },
+        component: resolve => require(['../pages/Order.vue'], resolve)
+    },
+    {
         path: '/my',
         name: 'my',
         meta: {

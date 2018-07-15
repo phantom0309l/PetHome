@@ -24,6 +24,9 @@
                 </div>
             </van-cell>
             <van-cell class="goods-express">
+                <van-col span="24">蚂蚁评分：710 优质</van-col>
+            </van-cell>
+            <van-cell class="goods-express">
                 <van-col span="10">地址：北京市朝阳区</van-col>
             </van-cell>
             <van-cell class="goods-express">
@@ -35,6 +38,8 @@
                             :count="5"
                             color="#fabf40"
                             void-color="#fabf40"
+                            disabled-color="#fabf40"
+                            disabled
                     />
                 </van-col>
             </van-cell>
@@ -110,6 +115,9 @@
             </van-goods-action-mini-btn>
             <van-goods-action-big-btn style="background-color: #fabf40" @click="talk">
                 立即沟通
+            </van-goods-action-big-btn>
+            <van-goods-action-big-btn style="background-color: #f44" @click="order">
+                立即预订
             </van-goods-action-big-btn>
         </van-goods-action>
 
@@ -216,7 +224,14 @@
                 if (this.checkLogin()) {
                     this.$router.push({name: 'msgone'});
                 }
+            },
+
+            order() {
+                if (this.checkLogin()) {
+                    this.$router.push({name: 'orderselectdate'});
+                }
             }
+
         },
         mounted: function () {
             document.title = "寄养家庭";

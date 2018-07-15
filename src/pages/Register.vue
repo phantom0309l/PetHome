@@ -44,8 +44,11 @@
                     注册即表明你同意
                     <a href="javascript:void(0);">新用户注册协议</a>
                 </div>
+                <div class="protocol">
+                    <van-checkbox v-model="checked">允许获取蚂蚁信用分</van-checkbox>
+                </div>
 
-                <van-button class="push-20-t" style="color: #fabf40" size="large" @click="submit">注册</van-button>
+                <van-button class="push-20-t" style="color: #fabf40" size="large" @click="submit" :disabled="!checked">注册</van-button>
 
             </div>
         </div>
@@ -75,7 +78,8 @@
                     code: '',
                     password: '',
                     nickname: '',
-                }
+                },
+                checked: true,
             }
         },
         methods: {

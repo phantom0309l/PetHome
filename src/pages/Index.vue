@@ -26,13 +26,15 @@
         <van-row class="fc-bg-white pull-15-t pull-15-b push-10-t" style="font-size: 14px;">
             <van-col span="7" offset="1">
                 <button><i class="icon icon-release" style="margin: 10px auto;" @click="goRegisterFamily"></i> 发布寄养</button>
+            <van-col span="12">
+                <button><i class="icon icon-release" style="margin: 10px auto;"></i> 发布寄养</button>
             </van-col>
-            <van-col span="7" offset="1">
+            <van-col span="12">
                 <button><i class="icon icon-integral" style="margin: 10px auto;" @click="goProductList"></i> 寄养家庭</button>
             </van-col>
-            <van-col span="7" offset="1">
-                <button><i class="icon icon-hospital" style="margin: 10px auto;"></i> 合作医院</button>
-            </van-col>
+            <!--<van-col span="7" offset="1">-->
+                <!--<button><i class="icon icon-hospital" style="margin: 10px auto;"></i> 合作医院</button>-->
+            <!--</van-col>-->
         </van-row>
 
         <p class="vc push-20-t pull-5-b" style="font-weight: bolder;">为你推荐</p>
