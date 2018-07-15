@@ -149,6 +149,7 @@ export default [
         // redirect: '/error',
         component: resolve => require(['../pages/Empty.vue'], resolve),
     },
+    {path: '/', redirect: '/index'},
     {
         path: '*',
         // redirect: '/error',
