@@ -37,7 +37,7 @@
     export default {
         data: function () {
             return {
-                selectedDates: [],
+                selectedDates: ['', ''],
                 type: '',
                 datas: [],
                 day_cnt: 0,
@@ -109,7 +109,7 @@
                 localStorage.setItem('mobile', this.mobile);
                 localStorage.setItem('remark', this.remark);
 
-                this.$router.push({name: 'orderone'});
+                this.$router.replace({name: 'orderone'});
             },
             getFullDate: function (year, month, day) {
                 var fullDate = year + '-';

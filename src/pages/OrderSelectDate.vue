@@ -178,7 +178,7 @@
                     this.$toast('请选择要预订的日期范围');
                     return false;
                 }
-                this.$router.push({
+                this.$router.replace({
                     name: 'order',
                     params: {
                         selectedDates: this.selectedDates,
