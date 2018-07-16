@@ -24,7 +24,7 @@
                 </div>
             </van-cell>
             <van-cell class="goods-express">
-                <van-col span="24">蚂蚁评分：710 优质</van-col>
+                <van-col span="24"><span style="font-size: 14px; color: #38f;">🐜 蚂蚁评分：710 优质</span></van-col>
             </van-cell>
             <van-cell class="goods-express">
                 <van-col span="10">地址：北京市朝阳区</van-col>

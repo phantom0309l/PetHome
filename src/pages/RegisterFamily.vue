@@ -8,11 +8,11 @@
             />
         </van-cell-group>
         <van-cell-group class="push-10-b">
-            <van-field
-                    v-model="category"
-                    label="类型"
-                    placeholder="请填写类型"
-            />
+            <!--<van-field-->
+                    <!--v-model="category"-->
+                    <!--label="类型"-->
+                    <!--placeholder="请填写类型"-->
+            <!--/>-->
             <van-field
                     v-model="price"
                     label="价格"

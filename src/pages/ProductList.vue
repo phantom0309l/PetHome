@@ -3,7 +3,7 @@
         <van-search placeholder="请输入关键字" v-model="keyword"/>
         <van-row class="pull-10-t pull-10-b query-box van-hairline--top-bottom" style="background-color: rgb(242, 242, 242)">
             <van-col span="12">
-                <button>离我最近</button>
+                <button @click="order=!order">{{sort}}</button>
             </van-col>
             <van-col span="12" class="van-hairline--left">
                 <button @click="onPopupClick">筛选</button>
@@ -11,7 +11,10 @@
             <div class="clear"></div>
         </van-row>
 
-        <van-popup v-model="popup" position="right" :overlay="false">
+        <van-actionsheet v-model="order" :actions="actions">
+        </van-actionsheet>
+
+        <div v-if="popup" class="pop-view">
             <div class="pull-15">
                 <van-row class="push-20-b">
                     <van-col span="12" style="text-align: left;"><b style="font-size: 18px;">价格</b></van-col>
@@ -38,7 +41,7 @@
             <div class="query-btn-area">
                 <van-button class="close-pop" @click="popup=!popup" size="large" type="default">关闭</van-button>
             </div>
-        </van-popup>
+        </div>
 
         <van-list v-model="loading" :finished="finished" @load="onLoad" class="pull-15 van-hairline--top" style="padding-bottom: 0;">
             <div class="item-product van-hairline--surround" v-for="(product, index) in products" :key="index" @click="goProductOne">
@@ -93,6 +96,26 @@
         },
         data: function () {
             return {
+                sort: '离我最近',
+                order: false,
+                actions: [
+                    {
+                        name: '离我最近',
+                        callback: this.onClick,
+                    },
+                    {
+                        name: '价格由低到高',
+                        callback: this.onClick,
+                    },
+                    {
+                        name: '价格由高到低',
+                        callback: this.onClick,
+                    },
+                    {
+                        name: '好评优先',
+                        callback: this.onClick,
+                    },
+                ],
                 keyword: '',
                 finished: false,
                 loading: false,
@@ -161,46 +184,8 @@
                     },
                 ],
                 selected_service_type: 4,
-            }
-        },
-        methods: {
-            // 获取数据
-            fetchData: function () {
-                var self = this;
-                var url = api.get('xxx');
-                var params = {};
-                common.post(url, params, function (response) {
-                    if (response.errno == 0) {
-                        var data = response.data;
-                    }
-                })
-            },
-            onPopupClick: function () {
-                let self = this;
-                this.popup = !this.popup;
-                setTimeout(function () {
-                    self.$refs['slider'].refresh()
-                }, 100);
-            },
-            onSliderCallBack: function (value) {
-                this.min_price = value[0];
-                this.max_price = value[1] == this.slider.max ? '无限' : value[1];
-            },
-            onServiceTypeClick: function (service_type) {
-                this.selected_service_type = service_type.id;
-            },
-            isActive: function (service_type) {
-                return this.selected_service_type === service_type.id
-            },
-            goProductOne: function () {
-                this.$router.push({name: 'productone'});
-            },
-            onLoad: function () {
-                let self = this;
-                setInterval(function () {
-                    self.finished = true;
-                    self.loading = false;
-                    self.products = [
+                datas: {
+                    '离我最近': [
                         {
                             cover: 'http://viptail.image.alimmdn.com/files/official_web/img/gz001-f.jpg',
                             price: 80,
@@ -241,7 +226,182 @@
                             address: '上海',
                             distance: '1887.04km'
                         },
-                    ];
+                    ],
+                    '价格由低到高': [
+                        {
+                            cover: 'http://viptail.image.alimmdn.com/files/official_web/img/sh001-f.jpg',
+                            price: 38,
+                            head: 'http://viptail.image.alimmdn.com/files/official_web/img/km001-u.jpg',
+                            name: '比熊元宝的家',
+                            grade: 4.4,
+                            rate: 4.5,
+                            address: '昆明',
+                            distance: '2007.04km'
+                        },
+                        {
+                            cover: 'http://viptail.image.alimmdn.com/files/official_web/img/gz002-f.jpg',
+                            price: 55,
+                            head: 'http://viptail.image.alimmdn.com/files/official_web/img/gz002-u.jpg',
+                            name: '丢丢家',
+                            grade: 4.7,
+                            rate: 4,
+                            address: '广州',
+                            distance: '2507.11km'
+                        },
+                        {
+                            cover: 'http://viptail.image.alimmdn.com/files/official_web/img/gz001-f.jpg',
+                            price: 80,
+                            head: 'http://viptail.image.alimmdn.com/image/face/user/102351/20170926211531898019BBE.jpg@!face',
+                            name: '科科大王',
+                            grade: 5.0,
+                            rate: 5,
+                            address: '北京',
+                            distance: '7.04km'
+                        },
+                        {
+                            cover: 'http://viptail.image.alimmdn.com/files/official_web/img/bj002-f.jpg',
+                            price: 88,
+                            head: 'http://viptail.image.alimmdn.com/files/official_web/img/sh001-u.jpg',
+                            name: 'mocci',
+                            grade: 5.0,
+                            rate: 5,
+                            address: '上海',
+                            distance: '1887.04km'
+                        },
+                    ],
+                    '价格由高到低': [
+                        {
+                            cover: 'http://viptail.image.alimmdn.com/files/official_web/img/bj002-f.jpg',
+                            price: 88,
+                            head: 'http://viptail.image.alimmdn.com/files/official_web/img/sh001-u.jpg',
+                            name: 'mocci',
+                            grade: 5.0,
+                            rate: 5,
+                            address: '上海',
+                            distance: '1887.04km'
+                        },
+                        {
+                            cover: 'http://viptail.image.alimmdn.com/files/official_web/img/gz001-f.jpg',
+                            price: 80,
+                            head: 'http://viptail.image.alimmdn.com/image/face/user/102351/20170926211531898019BBE.jpg@!face',
+                            name: '科科大王',
+                            grade: 5.0,
+                            rate: 5,
+                            address: '北京',
+                            distance: '7.04km'
+                        },
+                        {
+                            cover: 'http://viptail.image.alimmdn.com/files/official_web/img/gz002-f.jpg',
+                            price: 55,
+                            head: 'http://viptail.image.alimmdn.com/files/official_web/img/gz002-u.jpg',
+                            name: '丢丢家',
+                            grade: 4.7,
+                            rate: 4,
+                            address: '广州',
+                            distance: '2507.11km'
+                        },
+                        {
+                            cover: 'http://viptail.image.alimmdn.com/files/official_web/img/sh001-f.jpg',
+                            price: 38,
+                            head: 'http://viptail.image.alimmdn.com/files/official_web/img/km001-u.jpg',
+                            name: '比熊元宝的家',
+                            grade: 4.4,
+                            rate: 4.5,
+                            address: '昆明',
+                            distance: '2007.04km'
+                        },
+                    ],
+                    '好评优先': [
+                        {
+                            cover: 'http://viptail.image.alimmdn.com/files/official_web/img/gz001-f.jpg',
+                            price: 80,
+                            head: 'http://viptail.image.alimmdn.com/image/face/user/102351/20170926211531898019BBE.jpg@!face',
+                            name: '科科大王',
+                            grade: 5.0,
+                            rate: 5,
+                            address: '北京',
+                            distance: '7.04km'
+                        },
+                        {
+                            cover: 'http://viptail.image.alimmdn.com/files/official_web/img/bj002-f.jpg',
+                            price: 88,
+                            head: 'http://viptail.image.alimmdn.com/files/official_web/img/sh001-u.jpg',
+                            name: 'mocci',
+                            grade: 5.0,
+                            rate: 5,
+                            address: '上海',
+                            distance: '1887.04km'
+                        },
+                        {
+                            cover: 'http://viptail.image.alimmdn.com/files/official_web/img/gz002-f.jpg',
+                            price: 55,
+                            head: 'http://viptail.image.alimmdn.com/files/official_web/img/gz002-u.jpg',
+                            name: '丢丢家',
+                            grade: 4.7,
+                            rate: 4,
+                            address: '广州',
+                            distance: '2507.11km'
+                        },
+                        {
+                            cover: 'http://viptail.image.alimmdn.com/files/official_web/img/sh001-f.jpg',
+                            price: 38,
+                            head: 'http://viptail.image.alimmdn.com/files/official_web/img/km001-u.jpg',
+                            name: '比熊元宝的家',
+                            grade: 4.4,
+                            rate: 4.5,
+                            address: '昆明',
+                            distance: '2007.04km'
+                        },
+                    ],
+                }
+            }
+        },
+        methods: {
+            onClick: function (sort) {
+                this.sort = sort.name;
+                this.order = false;
+
+                this.loading = true;
+                this.products = [];
+                this.onLoad();
+            },
+            // 获取数据
+            fetchData: function () {
+                var self = this;
+                var url = api.get('xxx');
+                var params = {};
+                common.post(url, params, function (response) {
+                    if (response.errno == 0) {
+                        var data = response.data;
+                    }
+                })
+            },
+            onPopupClick: function () {
+                let self = this;
+                this.popup = !this.popup;
+                setTimeout(function () {
+                    self.$refs['slider'].refresh()
+                }, 100);
+            },
+            onSliderCallBack: function (value) {
+                this.min_price = value[0];
+                this.max_price = value[1] == this.slider.max ? '无限' : value[1];
+            },
+            onServiceTypeClick: function (service_type) {
+                this.selected_service_type = service_type.id;
+            },
+            isActive: function (service_type) {
+                return this.selected_service_type === service_type.id
+            },
+            goProductOne: function () {
+                this.$router.push({name: 'productone'});
+            },
+            onLoad: function () {
+                let self = this;
+                setInterval(function () {
+                    self.finished = true;
+                    self.loading = false;
+                    self.products = self.datas[self.sort];
                     return true;
                 }, 1000);
             },
@@ -272,6 +432,11 @@
 </script>
 
 <style scoped>
+    .productlist {
+        overflow: scroll;
+        height: 100%;
+    }
+
     .query-box button {
         font-size: 12px;
         font-weight: bolder;
@@ -311,5 +476,14 @@
 
     .close-pop {
         color: #fabf40;
+    }
+
+    .pop-view {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #fff;
+        z-index: 2006;
     }
 </style>

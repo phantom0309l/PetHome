@@ -23,7 +23,7 @@
 
         <van-submit-bar
                 :price="getAmount"
-                button-text="提交订单"
+                button-text="去支付"
                 @submit="onSubmit"
         />
     </div>
