@@ -45,6 +45,7 @@
 
         <van-cell-group style="text-align: left;">
             <van-cell icon="exchange" title="我的订单" is-link @click="goOrderOne"/>
+            <van-cell icon="exchange" title="我收到的订单" is-link @click="goReceiveOrder"/>
             <!--<van-cell icon="gold-coin" title="我的优惠券" is-link/>-->
             <!--<van-cell icon="gift" title="我收到的礼物" is-link/>-->
         </van-cell-group>
@@ -91,6 +92,9 @@
             },
             goOrderOne: function () {
                 this.$router.push({name: 'orderone'});
+            },
+            goReceiveOrder: function () {
+                this.$router.push({name: 'receiveorder'});
             },
             goMyFamily: function () {
                 this.$router.push({name: 'myfamily'});

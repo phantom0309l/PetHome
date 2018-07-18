@@ -40,6 +40,15 @@ export default [
         component: resolve => require(['../pages/OrderOne.vue'], resolve)
     },
     {
+        path: '/receiveorder',
+        name: 'receiveorder',
+        meta: {
+            requireBind: true,
+            showTabbar: false,
+        },
+        component: resolve => require(['../pages/ReceiveOrder.vue'], resolve)
+    },
+    {
         path: '/orderselectdate',
         name: 'orderselectdate',
         meta: {
