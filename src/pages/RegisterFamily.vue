@@ -77,7 +77,7 @@
         </van-cell-group>
 
         <div class="bottom-area" @click="$router.go(-1)">
-            <van-button style="background-color: #fabf40" bottom-action>提交</van-button>
+            <van-button style="background-color: #fabf40" bottom-action>提交审核</van-button>
         </div>
     </div>
 </template>
